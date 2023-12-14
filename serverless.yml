@@ -1,0 +1,18 @@
+service: serverless-tdd
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: sa-east-1
+  memorySize: 256
+functions:
+  createUser:
+    handler: src/functions/createUser.handler
+    events:
+      - httpApi:
+          method: POST
+          path: /users
+
+plugins:
+  - serverless-esbuild
